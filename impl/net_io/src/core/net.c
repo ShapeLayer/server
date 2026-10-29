@@ -92,7 +92,11 @@ int net_listen_tcp(const char *ip, uint16_t port, int backlog) {
 
 int net_connect_tcp(const char *ip, uint16_t port) {
   struct sockaddr_in addr;
-  // Pass handling case on INADDR_ANY
+  // Refuse NULL or empty IP address, as it is invalid for connecting.
+  if (ip == NULL || ip[0] == '\0') {
+    errno = EINVAL;
+    return -1;
+  }
   if (make_addr(&addr, ip, port) < 0) return -1;
   
   // Create a TCP socket
@@ -133,12 +137,13 @@ int net_set_nodelay(int fd, int on) {
 }
 
 int net_set_nosigpipe(int fd) {
-#ifndef SO_NOSIGPIPE  /* macOS, BSD */
+#ifdef SO_NOSIGPIPE  /* macOS, BSD */
   int on = 1;
   return setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE, &on, sizeof(on));
 #else
   // There is no SO_NOSIGPIPE on Linux, but we can use MSG_NOSIGNAL
   // flag in send() instead.
+  (void)fd;  // Suppress unused parameter warning
   return 0;  // No action needed on Linux
 #endif
 }
