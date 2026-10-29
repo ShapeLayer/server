@@ -1,4 +1,8 @@
 # server (slop)
 
-- [서버 프로그래밍 학습 자료 (학습 자료가 AI로 생성됨)](./docs/)
-- [구현 (수기로 작성중)](./impl/)
+Implementing a server using C and POSIX API for self-study.
+
+## Getting Started
+
+- [(AI-generated) [ko] Instructions for building and running the server](./docs/)
+- [Implementation](./impl/)
