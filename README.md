@@ -1,4 +1,4 @@
-# server (slop)
+# server
 
 Implementing a server using C and POSIX API for self-study.
 
