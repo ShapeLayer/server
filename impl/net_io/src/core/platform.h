@@ -1,6 +1,10 @@
+/* platform.h */
+
 #pragma once
 #ifndef PLATFORM_H
 #define PLATFORM_H
+
+#include <sys/socket.h>
 
 #if defined(__linux__)
 #  define PLATFORM_LINUX

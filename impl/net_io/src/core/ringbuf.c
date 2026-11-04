@@ -87,6 +87,7 @@ size_t rb_consume(ringbuf_t *rb, size_t n)
  * Modularize common logic:
  * - Valid data could be 2 part splitted.
  * - Passes valid data range as 1 or 2 (pos, len).
+ * - Returns 0 when len is 0.
  * - Returns 1 when buffer not be splitted.
  * - Returns 2 when buffer has been splitted.
  */
